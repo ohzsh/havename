@@ -7,7 +7,7 @@
   "engines": {
     "vscode": "^1.73.0"
   },
-  "icon": "https://cdn.kittyx.top/pc/logo.png",
+  "icon": "logo.png",
   "categories": [
     "Other"
   ],
