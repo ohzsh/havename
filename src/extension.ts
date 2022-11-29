@@ -45,10 +45,10 @@ const fanyi = function (text:string){
   if(from === "YD") {
     if(cacheYdFn && preFrom === from) {return cacheYdFn(text);}
     preFrom = from;
-    return cacheYdFn = youdao({
+    return (cacheYdFn = youdao({
       appkey,
       secret,
-    });
+    }))(text);
   }
   if(from === "BD") {
     preFrom = from;
