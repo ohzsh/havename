@@ -2,6 +2,7 @@
   "name": "havename",
   "displayName": "HaveName",
   "description": "I have a name",
+  "publisher": "havename",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.73.0"
