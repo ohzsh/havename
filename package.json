@@ -59,6 +59,10 @@
     "lint": "eslint src --ext ts",
     "test": "node ./out/test/runTest.js"
   },
+  "repository": {
+		"type": "git",
+		"url": "https://github.com/ohzsh/havename"
+	},
   "devDependencies": {
     "@types/lodash": "^4.14.182",
     "@types/crypto-js": "^4.1.1",
