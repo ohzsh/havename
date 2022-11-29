@@ -13,7 +13,8 @@ const createConfig = ()=>{
   const appkey = config.get("Apiname") as string;
   const secret = config.get("Apikey") as string;
   const time = config.get('time') as number;
-  return { from, appkey, secret, time };
+  const validLanguages = config.get('validLanguages') as string[];
+  return { from, appkey, secret, time, validLanguages };
 };
 
 const baidu = async (q: string) => {
@@ -89,8 +90,9 @@ const transTextToCode = (type: string, text:string) => textToCodeMap[type](text)
 
 
 const registerTransformPlugIn = ()=>{
-  const { time } = createConfig();
-  const inputListener = debounce(async function(e: { reason: unknown, document: { lineAt: (arg0: number) => any; uri: vscode.Uri; }; }){
+  const { time, validLanguages } = createConfig();
+  const inputListener = debounce(async function(e: { reason: unknown, document: { lineAt: (arg0: number) => any; uri: vscode.Uri; languageId: string; }; }){
+    if(!validLanguages?.includes(e.document.languageId)) {return;}
     if(e.reason) {return;}
     const selection = (vscode.window.activeTextEditor as vscode.TextEditor).selection;
     const lineNumber = selection.start.line;

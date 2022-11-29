@@ -47,6 +47,20 @@
           "type": "number",
           "default": 500,
           "description": "输入防抖"
+        },
+        "vscodeFanyi.validLanguages": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "设置扩展在这些语言上运行",
+          "default": [
+            "vue",
+            "typescript",
+            "javascript",
+            "typescriptreact",
+            "javascriptreact"
+          ]
         }
       }
     }
