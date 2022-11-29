@@ -98,7 +98,7 @@ const registerTransformPlugIn = ()=>{
     const lineNumber = selection.start.line;
     const curLineDoc = e.document.lineAt(lineNumber);
     const lineText = curLineDoc.text;
-    const searchRes = lineText.match(/(((?:x|X)(?:t|T)|(?:d|D)(?:t|T)|(?:c|C)(?:l|L)):(\w|[\u4e00-\u9fa5])+)[\s\:\*\/( =><+-]?/) || [];
+    const searchRes = lineText.match(/(((?:x|X)(?:t|T)|(?:d|D)(?:t|T)|(?:c|C)(?:l|L)):(\w|[\u4e00-\u9fa5])+)(?!$3)?/) || [];
     const [,needTranstionText] = searchRes;
     if(needTranstionText?.length) {
       const [type, text] = needTranstionText.split(':');
@@ -108,7 +108,7 @@ const registerTransformPlugIn = ()=>{
       const rightText = isCN(transText) ? transText : transTextToCode(type.toLowerCase(), transText?.trim());
       editor.replace(e.document.uri, new vscode.Range(
         startQuotePosition,
-        startQuotePosition.translate(undefined, (searchRes.index as number) + text.length + 1)
+        startQuotePosition.translate(undefined, needTranstionText.length)
       ), rightText);
       vscode.workspace.applyEdit(editor);
     }
